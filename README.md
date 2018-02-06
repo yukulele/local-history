@@ -22,29 +22,56 @@ There is also an html-document (command: `View: Local history`)
 
 ## Settings
 
-        "local-history.daysLimit":  30  // A day number to purge local history. (0: no purge)
-        "local-history.maxDisplay": 10  // A max files to display with local history commands
-        "local-history.saveDelay":   0  // A delay in seconds to save file in local history. {0: no delay}
-        "local-history.dateLocale":     // The locale to use when displaying date
+```jsonc
+{
+  // A day number to purge local history. (0: no purge)
+  "local-history.daysLimit": 30,
 
-        "local-history.path":     // Specify another location for .history folder (null: use workspaceFolder)
-            This settings must be an abolute path. You can also start your path with:
-            ${workspaceFolder}: current workspace folder
-                e.g. ${workspaceFolder}/.vscode to save in each workspace folder .vscode/.history
-            ${workspaceFolder: 0}: first workspace folder
-                e.g. workspace folders A, B, C. But save always in A/.history
-        "local-history.absolute": // Save absolute or relative path in local-history.path
-            true:  (absolute) // <local-history.path>/.history/<absolutePath>
-            false: (relative) // (default) <local-history.path>/.history/<workspaceFolder.basename>/<relativePath>
+  // A max files to display with local history commands
+  "local-history.maxDisplay": 10,
 
-        "local-history.enabled":
-            0: Never     // Possibillity to disabled the extension for some project
-            1: Always    // (default) Save also single file with no workspaceFolder ("local-history.path" must be defined)
-            2: Workspace // Save only files within workspaceFolder
+  // A delay in seconds to save file in local history. {0: no delay}
+  "local-history.saveDelay": 0,
 
-        "local-history.exclude": // Files or folders to not save
-            // (default) ['**/.history/**', '**/.vscode**', '**/node_modules/**', '**/typings/**', '**/out/**']
+  // The locale to use when displaying date
+  "local-history.dateLocale": "",
 
+  /* 
+    Specify another location for .history folder (null: use workspaceFolder)
+    This settings must be an abolute path. You can also start your path with:
+    ${workspaceFolder}: current workspace folder
+        e.g. ${workspaceFolder}/.vscode to save in each workspace folder .vscode/.history
+    ${workspaceFolder: 0}: first workspace folder
+        e.g. workspace folders A, B, C. But save always in A/.history
+  */
+  "local-history.path": "",
+
+  /*
+    Save absolute path in local-history.path
+      true:  (absolute) // <local-history.path>/.history/<absolutePath>
+      false: (relative) // (default) <local-history.path>/.history/<workspaceFolder.basename>/<relativePath>
+  */
+  "local-history.absolute": false,
+
+  /*
+    Is save in local history enabled
+      0: Never     // Possibillity to disabled the extension for some project
+      1: Always    // (default) Save also single file with no workspaceFolder ("local-history.path" must be defined)
+      2: Workspace // Save only files within workspaceFolder
+  */
+  "local-history.enabled": 1,
+
+  // Files or folders to not save
+  "local-history.exclude": [
+    "**/.history/**",
+    "**/.vscode/**",
+    "**/node_modules/**",
+    "**/typings/**",
+    "**/out/**",
+    "**/Code/User/**"
+  ]
+}
+```
 ## Commands
 
     local-history.showAll // Show all history available to select (limited with maxDisplay settings)
